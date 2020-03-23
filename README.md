@@ -1,5 +1,5 @@
 # COVID-19 in Zimbabwe
-covid19zim Application is a web application for acecssing near-real time statistics and information about the COVID-19 in Zimbabwe.
+covid19zim Dashboard is a web application for accessing near-real time statistics and information about the COVID-19 in Zimbabwe.
 Official statistics are gathered from the Ministry of Health and Child Care (MoHCC) in Zimbabwe. Other data sources such as WHO are also 
 considered. This application is independently developed and not affiliated with any government organisation.
 
@@ -8,7 +8,7 @@ Online version available at https://covid19zim.herokuapp.com/
 ![Alt text](./public/images/tsr.png?raw=true "covid19zim Application")
 
 ## User Stories
-covid19zim Application has 3 main use cases:
+covid19zim Dashboard has 3 main use cases:
 
 - Confirm official cases, deaths and recoveries.
 
@@ -22,7 +22,7 @@ covid19zim Application has 3 main use cases:
 
 
 ## Installation (Development Environment)
-In order to run covid19zim Application, an environment with the following is required:
+In order to run covid19zim Dashboard, an environment with the following is required:
 
 - Node.js
 - Express Framework
