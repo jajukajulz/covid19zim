@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <% include ('partials/head') %>
+        <%- include ('./partials/head') %>
   </head>
   <body>
 
     <!-- START: header -->
     <header>
-      <% include ('partials/header') %>
+      <%- include ('./partials/header')  %>
     </header>
     <!-- END: header -->
 
@@ -16,7 +16,7 @@
         <div class="container">
           <div class="row align-items-center justify-content-center text-wrap text-break" id="notificationBarRow">
               <div class="col-md-8">
-                <% include ('./partials/notificationbar') %>
+                <%- include ('./partials/notificationbar') %>
               </div>
           </div>
           <div class="row" id="loadingRow">Loading...</div>
@@ -74,7 +74,7 @@
     </main>
 
     <!-- start footer -->
-    <% include ('partials/footer') %>
+    <%- include ('./partials/footer') %>
     <!-- end footer -->
 
   </body>
