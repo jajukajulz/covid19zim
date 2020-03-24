@@ -5,7 +5,7 @@ considered. This application is independently developed and not affiliated with 
 
 Online version available at https://covid19zim.herokuapp.com/
 
-![Alt text](./public/images/tsr.png?raw=true "covid19zim Application")
+![Alt text](./public/images/covid19zim.png?raw=true "covid19zim Dashboard")
 
 ## User Stories
 covid19zim Dashboard has 3 main use cases:
