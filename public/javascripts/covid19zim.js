@@ -4,10 +4,12 @@ $(document).ready(function() {
                   DATA_MENU_BUTTON : "#dataMenuButton",
                   HOTLINES_MENU_BUTTON : "#hotlinesMenuButton",
                   RESOURCES_MENU_BUTTON : "#resourcesMenuButton",
+                  SERVICE_PROVIDERS_MENU_BUTTON : "#serviceProviderMenuButton",
 
                   DATA_ROW: "#dataRow",
                   HOTLINES_ROW: "#hotlinesRow",
                   RESOURCES_ROW: "#resourcesRow",
+                  SERVICE_PROVIDERS_ROW: "#serviceProdiversRow",
 
                   LOADING : "#loadingRow",
                   NOTIFICATION_BAR_ROW: "#notificationBarRow",
@@ -44,6 +46,12 @@ $(document).ready(function() {
         setActiveClass(CONSTANTS.RESOURCES_MENU_BUTTON)
     });
 
+    // display the resources row  after menu button click
+    $(CONSTANTS.SERVICE_PROVIDERS_MENU_BUTTON).click(function() {
+        displayRow(CONSTANTS.SERVICE_PROVIDERS_ROW, CONSTANTS.EMPTY_STRING);
+        setActiveClass(CONSTANTS.SERVICE_PROVIDERS_MENU_BUTTON)
+    });
+
     //initially display data row
     displayRow(CONSTANTS.DATA_ROW, CONSTANTS.EMPTY_STRING);
 
@@ -73,6 +81,7 @@ $(document).ready(function() {
         $(CONSTANTS.DATA_MENU_BUTTON).removeClass(CONSTANTS.ACTIVE);
         $(CONSTANTS.HOTLINES_MENU_BUTTON).removeClass(CONSTANTS.ACTIVE);
         $(CONSTANTS.RESOURCES_MENU_BUTTON).removeClass(CONSTANTS.ACTIVE);
+        $(CONSTANTS.SERVICE_PROVIDERS_MENU_BUTTON).removeClass(CONSTANTS.ACTIVE);
 
         $(menuButton).addClass(CONSTANTS.ACTIVE);
     }
@@ -84,6 +93,7 @@ $(document).ready(function() {
         $(CONSTANTS.DATA_ROW).hide();
         $(CONSTANTS.HOTLINES_ROW).hide();
         $(CONSTANTS.RESOURCES_ROW).hide();
+        $(CONSTANTS.SERVICE_PROVIDERS_ROW).hide();
         $(CONSTANTS.NOTIFICATION_BAR_ROW).hide();
 
         //reset form fields
