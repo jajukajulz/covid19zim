@@ -16,23 +16,33 @@ $(document).ready(function() {
 
                   SUCCESS: "success",
                   ERROR: "error",
-                  WARNING: "warning"
+                  WARNING: "warning",
+                  ACTIVE: "active"
                 };
 
     // display the data dashboard i.e. landing page after clicking on covid19zim title / logo at top of the page
-    $(CONSTANTS.HOME_MENU_BUTTON).click(function() { displayRow(CONSTANTS.DATA_ROW, CONSTANTS.EMPTY_STRING) });
+    $(CONSTANTS.HOME_MENU_BUTTON).click(function() {
+        displayRow(CONSTANTS.DATA_ROW, CONSTANTS.EMPTY_STRING);
+        setActiveClass(CONSTANTS.DATA_MENU_BUTTON)
+    });
 
     // display the data dashboard row after menu button click
-    $(CONSTANTS.DATA_MENU_BUTTON).click(function() { displayRow(CONSTANTS.DATA_ROW,
-                                                                              CONSTANTS.EMPTY_STRING) });
+    $(CONSTANTS.DATA_MENU_BUTTON).click(function() {
+        displayRow(CONSTANTS.DATA_ROW, CONSTANTS.EMPTY_STRING);
+        setActiveClass(CONSTANTS.DATA_MENU_BUTTON)
+    });
 
-    // display the hotliness row  after menu button click
-    $(CONSTANTS.HOTLINES_MENU_BUTTON).click(function() { displayRow(CONSTANTS.HOTLINES_ROW,
-                                                                              CONSTANTS.EMPTY_STRING) });
+    // display the hotlines row  after menu button click
+    $(CONSTANTS.HOTLINES_MENU_BUTTON).click(function() {
+        displayRow(CONSTANTS.HOTLINES_ROW, CONSTANTS.EMPTY_STRING);
+        setActiveClass(CONSTANTS.HOTLINES_MENU_BUTTON)
+    });
 
     // display the resources row  after menu button click
-    $(CONSTANTS.RESOURCES_MENU_BUTTON).click(function() { displayRow(CONSTANTS.RESOURCES_ROW,
-                                                                              CONSTANTS.EMPTY_STRING) });
+    $(CONSTANTS.RESOURCES_MENU_BUTTON).click(function() {
+        displayRow(CONSTANTS.RESOURCES_ROW, CONSTANTS.EMPTY_STRING);
+        setActiveClass(CONSTANTS.RESOURCES_MENU_BUTTON)
+    });
 
     //initially display data row
     displayRow(CONSTANTS.DATA_ROW, CONSTANTS.EMPTY_STRING);
@@ -56,6 +66,16 @@ $(document).ready(function() {
       //console.log(divNotificationHtml);
       $(parentDivID).html(divNotificationHtml);
     };
+
+    //function to hide active class from menu button
+    function setActiveClass(menuButton) {
+        // remove Active Class
+        $(CONSTANTS.DATA_MENU_BUTTON).removeClass(CONSTANTS.ACTIVE);
+        $(CONSTANTS.HOTLINES_MENU_BUTTON).removeClass(CONSTANTS.ACTIVE);
+        $(CONSTANTS.RESOURCES_MENU_BUTTON).removeClass(CONSTANTS.ACTIVE);
+
+        $(menuButton).addClass(CONSTANTS.ACTIVE);
+    }
 
     //function to display row based on menu button selection
     function displayRow(rowName, formName) {
