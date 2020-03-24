@@ -9,7 +9,7 @@ $(document).ready(function() {
                   DATA_ROW: "#dataRow",
                   HOTLINES_ROW: "#hotlinesRow",
                   RESOURCES_ROW: "#resourcesRow",
-                  SERVICE_PROVIDERS_ROW: "#serviceProdiversRow",
+                  SERVICE_PROVIDERS_ROW: "#serviceProvidersRow",
 
                   LOADING : "#loadingRow",
                   NOTIFICATION_BAR_ROW: "#notificationBarRow",
