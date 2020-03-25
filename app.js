@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var ejs = require('ejs');
+var sslRedirect = require('heroku-ssl-redirect');
+
 
 var indexRouter = require('./routes/index');
 
@@ -12,6 +14,13 @@ var app = express();
 // expose bootstrap
 app.use('/scripts/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/')));
 app.use('/scripts/jquery', express.static(path.join(__dirname, 'node_modules/jquery/dist/')));
+
+// enable ssl redirect
+app.use(sslRedirect([
+  'other',
+  'development',
+  'production'
+  ]));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
