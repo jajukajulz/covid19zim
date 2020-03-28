@@ -26,14 +26,13 @@ router.get('/', function(req, res, next) {
 //Fetch all stats documents under stats collections
 router.get('/api/v1/fetch_all_stats', function (req, res) {
   console.log("HTTP Get Request");
-  var docs_array = [];
+  var docs_dict = {};
   db.collection('stats').get()
   .then((snapshot) => {
     snapshot.forEach((doc) => {
-      //console.log(doc.id, '=>', doc.data());
-      docs_array.push(doc.id, '=>', doc.data());
+      docs_dict[doc.id] = doc.data()
     });
-    res.json(docs_array);
+    res.json(docs_dict);
     return
   })
   .catch((err) => {
