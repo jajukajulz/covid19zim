@@ -2,14 +2,29 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 var logger = require('morgan');
 var ejs = require('ejs');
 var sslRedirect = require('heroku-ssl-redirect');
 
+const admin = require('firebase-admin');
+let serviceAccount = require('./serviceAccountKey.json');
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+
+let db = admin.firestore();
+
+var app = express();
+
+app.use(bodyParser.json()); //need to parse HTTP request body
+
+//1 collection has 0 or more documents
+
 
 var indexRouter = require('./routes/index');
 
-var app = express();
 
 // expose bootstrap
 app.use('/scripts/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/')));
@@ -21,6 +36,7 @@ app.use(sslRedirect([
   'development',
   'production'
   ]));
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
