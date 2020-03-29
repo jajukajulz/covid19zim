@@ -19,7 +19,11 @@
                 <%- include ('./partials/notificationbar') %>
               </div>
           </div>
-          <div class="row" id="loadingRow">Loading...</div>
+          <div class="row justify-content-center" id="loadingRow">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
           <div class="row align-items-center justify-content-center" id="dataRow">
             <div>
               <h5>
@@ -27,29 +31,63 @@
               </h5>
             </div>
             <div class = "container">
-                <div class="card-deck mb-3 text-center">
-                  <div class="card shadow-sm border-danger">
-                    <div class="card-header text-danger"><h3>Total Confirmed</h3></div>
-                    <div class="card-body text-danger">
-                      <h1 class="card-text">7</h1>
-                    </div>
-                  </div>
-                  <div class="card shadow-sm border-secondary">
-                    <div class="card-header text-secondary"><h3>Total Deaths</h3></div>
-                    <div class="card-body text-secondary">
-                      <h1 class="card-text">1</h1>
-                    </div>
-                  </div>
-                  <div class="card shadow-sm border-success">
-                    <div class="card-header text-success"><h3>Total Recovered</h3></div>
-                    <div class="card-body text-success">
+              <div class="row">
+                <div class="card-deck mt-3 col-md-12 text-center">
+                  <div class="card shadow-sm border-warning">
+                    <div class="card-header text-warning"><h3>Total Positive</h3></div>
+                    <div id="stats_total_confirmed" class="card-body text-warning">
                       <h1 class="card-text">No Data</h1>
                     </div>
                   </div>
+                  <div class="card shadow-sm border-danger">
+                    <div class="card-header text-danger"><h3>Total Deaths</h3></div>
+                    <div id="stats_total_deaths" class="card-body text-danger">
+                      <h1 class="card-text">No Data</h1>
+                    </div>
+                  </div>
+                  <div class="card shadow-sm border-secondary">
+                    <div class="card-header text-secondary"><h3>Total Tested</h3></div>
+                    <div id="stats_total_tested" class="card-body text-secondary">
+                      <h1 class="card-text">No Data</h1>
+                    </div>
                 </div>
-                <p><i>Last updated 27 March 2020.</i></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="card-deck mt-3 col-md-12 text-center">
+                <div class="card shadow-sm border-success">
+                  <div class="card-header text-success"><h3>Total Recovered</h3></div>
+                  <div id="stats_total_recover" class="card-body text-success">
+                    <h1 class="card-text">No Data</h1>
+                  </div>
+                </div>
+                <div class="card shadow-sm border-success">
+                  <div class="card-header text-success"><h3>Total Negative</h3></div>
+                  <div id="stats_total_negative" class="card-body text-success">
+                    <h1 class="card-text">No Data</h1>
+                  </div>
+                </div>
             </div>
           </div>
+            <div class="row">
+              <div class="card-deck mt-3 col-md-12 text-center">
+                  <div class="card shadow-sm border-info">
+                    <div class="card-header text-info"><h3>Lockdown Status</h3></div>
+                    <div id="stats_lockdown_status" class="card-body text-info">
+                      <h1 class="card-text">No Data</h1>
+                    </div>
+                  </div>
+                  <div class="card shadow-sm border-info">
+                    <div class="card-header text-info"><h3>Lockdown Day Count</h3></div>
+                    <div id="stats_lockdown_current_day" class="card-body text-info">
+                      <h1 class="card-text">No Data</h1>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <p id="stats_last_updated"><i>Last updated - </i></p>
+          </div>
+        </div>
           <div class="row align-items-center justify-content-center" id="hotlinesRow">
             <div class="col-md-8 order-md-1">
               <h5>
