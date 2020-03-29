@@ -9,6 +9,7 @@ const SECONDS_IN_A_DAY = 86400; // 1 day
 const SECONDS_10 = 10; //10 seconds
 const MILLISECONDS_1000 = 1000; // 1 second 
 
+// Memory cache middleware
 var cache = (duration) => {
   return (req, res, next) => {
     let key = '__express__' + req.originalUrl || req.url
@@ -56,7 +57,7 @@ router.get('/caches/delete', function(req, res, next){
   res.send("Cache cleared");
   });
 
-// Get cahce size
+// Get cache size
 router.get('/caches/size', function(req, res, next){
     console.log("View cache size");
     var cache_size = mcache.size();
