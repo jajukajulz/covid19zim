@@ -19,7 +19,11 @@
                 <%- include ('./partials/notificationbar') %>
               </div>
           </div>
-          <div class="row" id="loadingRow">Loading...</div>
+          <div class="row justify-content-center" id="loadingRow">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
           <div class="row align-items-center justify-content-center" id="dataRow">
             <div>
               <h5>
@@ -30,24 +34,24 @@
                 <div class="card-deck mb-3 text-center">
                   <div class="card shadow-sm border-danger">
                     <div class="card-header text-danger"><h3>Total Confirmed</h3></div>
-                    <div class="card-body text-danger">
+                    <div id="stats_total_confirmed" class="card-body text-danger">
                       <h1 class="card-text">7</h1>
                     </div>
                   </div>
                   <div class="card shadow-sm border-secondary">
                     <div class="card-header text-secondary"><h3>Total Deaths</h3></div>
-                    <div class="card-body text-secondary">
+                    <div id="stats_total_deaths" class="card-body text-secondary">
                       <h1 class="card-text">1</h1>
                     </div>
                   </div>
                   <div class="card shadow-sm border-success">
                     <div class="card-header text-success"><h3>Total Recovered</h3></div>
-                    <div class="card-body text-success">
+                    <div id="stats_total_recover" class="card-body text-success">
                       <h1 class="card-text">No Data</h1>
                     </div>
                   </div>
                 </div>
-                <p><i>Last updated 27 March 2020.</i></p>
+                <p id="stats_last_updated"><i>Last updated 27 March 2020.</i></p>
             </div>
           </div>
           <div class="row align-items-center justify-content-center" id="hotlinesRow">

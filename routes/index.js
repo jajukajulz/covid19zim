@@ -111,18 +111,10 @@ const getData = async (collection, document) =>  {
 };
 
 //Fetch single stats document
-router.get('/api/v1/fetch_stats', async function (req, res) {
-  console.log("HTTP Get Request");
+router.get('/api/v1/fetch_stats', cache(SECONDS_IN_A_DAY), async function (req, res) {
+  // console.log("HTTP Get Request");
 
   res.json(await getData('stats','stats'))
-    return
-});
-
-//Fetch single consts document
-router.get('/api/v1/fetch_consts', async function (req, res) {
-  console.log("HTTP Get Request");
-
-  res.json(await getData('consts','consts1'))
     return
 });
 
