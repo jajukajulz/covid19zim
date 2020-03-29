@@ -69,9 +69,6 @@ $(document).ready(function() {
         setActiveClass(CONSTANTS.SERVICE_PROVIDERS_MENU_BUTTON)
     });
 
-    //initially display data row
-    //displayRow(CONSTANTS.DATA_ROW, CONSTANTS.EMPTY_STRING);
-
     // Show/Hide a "loading" indicator when AJAX request starts/completes:
     $(document).on({
         ajaxStart: function() { $(CONSTANTS.LOADING).show(); console.log("AJAX START LOADING")}, //ajaxStart specifies a function to run when the first AJAX request begins
@@ -106,15 +103,15 @@ $(document).ready(function() {
     function getStats(){
         $.ajax({ url: "/api/v1/fetch_stats",
         beforeSend: function () {
-            // ... your initialization code here (so show loader) ...
+            // show loader
             displayRow(CONSTANTS.LOADING, CONSTANTS.EMPTY_STRING);
-            console.log("AJAX START LOADING");
+            console.log("[getStats] AJAX START LOADING");
           },
         complete: function () {
-            // ... your finalization code here (hide loader) ...
+            // hide loader
             displayRow(CONSTANTS.DATA_ROW, CONSTANTS.EMPTY_STRING);
 
-            console.log("AJAX STOP LOADING");
+            console.log("[getStats] AJAX STOP LOADING");
             
           },
         }).done(function(res) {
@@ -124,10 +121,6 @@ $(document).ready(function() {
             res_stats_lockdown_status;
 
             if (res.response_status_flag) {
-            // STATS_TOTAL_CONFIRMED: "#stats_total_confirmed",
-            // STATS_TOTAL_DEATHS: "#stats_total_deaths",
-            // STATS_TOTAL_RECOVER: "#stats_total_recover",
-            // STATS_LAST_UPDATED: "#stats_last_updated",
             res_stats_total_confirmed = res.total_confirmed;
             res_stats_total_deaths = res.total_deaths;
             res_stats_total_recover = (res.total_recovered === -1 ? 'No Data' : res.total_recovered); 
