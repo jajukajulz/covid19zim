@@ -57,9 +57,13 @@ app.use(bodyParser.json());
 // Import Index router
 var indexRouter = require('./routes/index');
 
-// Expose bootstrap
+// Expose static files
 app.use('/scripts/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/')));
 app.use('/scripts/jquery', express.static(path.join(__dirname, 'node_modules/jquery/dist/')));
+//app.use("/public", express.static('public')); 
+//app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'))
+
 
 // Enable SSL redirect
 app.use(sslRedirect([
