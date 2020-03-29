@@ -169,7 +169,7 @@ $(document).ready(function() {
             $(CONSTANTS.STATS_TOTAL_TESTED).html(`<h1 class="card-text">${res_stats_total_tested}</h1>`);
             $(CONSTANTS.STATS_TOTAL_NEGATIVE).html(`<h1 class="card-text">${res_stats_total_negative}</h1>`);
 
-            $(CONSTANTS.STATS_LAST_UPDATED).html(`<i>Last updated ${res_stats_last_updated}.</i>`);
+            $(CONSTANTS.STATS_LAST_UPDATED).html(`<b><i>Last updated ${res_stats_last_updated}.</i></b>`);
         });
     };
 
