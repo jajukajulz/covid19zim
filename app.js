@@ -8,29 +8,63 @@ var ejs = require('ejs');
 var sslRedirect = require('heroku-ssl-redirect');
 
 const admin = require('firebase-admin');
-let serviceAccount = require('./serviceAccountKey.json');
 
+// Load environment variables from a .env file into process.env
+require('dotenv').config() 
+
+// Initialise Firebase using Service Account JSON
+// let serviceAccount = require('./serviceAccountKey.json');
+
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount)
+// });
+
+// some environments might have trouble with newlines in the private_key env var
+const FIREBASE_PK = process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n');
+
+// Initialise Firebase using env variables - useful for heroku deploy
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
+  credential: admin.credential.cert({
+    "type": process.env.FIREBASE_TYPE,
+    "project_id": process.env.FIREBASE_PROJECT_ID,
+    "private_key_id": process.env.FIREBASE_PRIVATE_KEY_ID,
+    "private_key": FIREBASE_PK,
+    "client_email": process.env.FIREBASE_CLIENT_EMAIL,
+    "client_id": process.env.FIREBASE_CLIENT_ID,
+    "auth_uri": process.env.FIREBASE_AUTH_URI,
+    "token_uri": process.env.FIREBASE_TOKEN_URI,
+    "auth_provider_x509_cert_url": process.env.FIREBASE_AUTH_PROVIDER_X509_CERT_URL,
+    "client_x509_cert_url": process.env.FIREBASE_CLIENT_X509_CERT_URL
+  }),
 });
 
+// Handle to Firebase DB
 let db = admin.firestore();
 
+// Load Express Framework
 var app = express();
 
-app.use(bodyParser.json()); //need to parse HTTP request body
+// Parse HTTP request body
+app.use(bodyParser.json()); 
 
-//1 collection has 0 or more documents
+// Example of adding a new document to Firebase
+// recall that a collection has 0 or more documents
+// let docRef = db.collection('stats').doc('consts1');
 
+// let setAda = docRef.set({
+//   first: 'Ada',
+//   last: 'Lovelace',
+//   born: 1815
+// });
 
+// Import Index router
 var indexRouter = require('./routes/index');
 
-
-// expose bootstrap
+// Expose bootstrap
 app.use('/scripts/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/')));
 app.use('/scripts/jquery', express.static(path.join(__dirname, 'node_modules/jquery/dist/')));
 
-// enable ssl redirect
+// Enable SSL redirect
 app.use(sslRedirect([
   'other',
   'development',
@@ -38,7 +72,7 @@ app.use(sslRedirect([
   ]));
 
 
-// view engine setup
+// View engine setup (ejs)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
