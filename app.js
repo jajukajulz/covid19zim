@@ -19,16 +19,13 @@ require('dotenv').config()
 //   credential: admin.credential.cert(serviceAccount)
 // });
 
-// some environments might have trouble with newlines in the private_key env var
-const FIREBASE_PK = process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n');
-
 // Initialise Firebase using env variables - useful for heroku deploy
 admin.initializeApp({
   credential: admin.credential.cert({
     "type": process.env.FIREBASE_TYPE,
     "project_id": process.env.FIREBASE_PROJECT_ID,
     "private_key_id": process.env.FIREBASE_PRIVATE_KEY_ID,
-    "private_key": FIREBASE_PK,
+    "private_key": process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'), // sanitize the read private key by replacing \\n characters with \n.
     "client_email": process.env.FIREBASE_CLIENT_EMAIL,
     "client_id": process.env.FIREBASE_CLIENT_ID,
     "auth_uri": process.env.FIREBASE_AUTH_URI,
