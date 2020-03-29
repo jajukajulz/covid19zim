@@ -20,6 +20,8 @@
     "heroku-ssl-redirect": "0.0.4",
     "http-errors": "~1.6.3",
     "jquery": "^3.4.1",
+    "memjs": "^1.2.2",
+    "memory-cache": "^0.2.0",
     "morgan": "~1.9.1",
     "popper.js": "^1.16.1"
   },
