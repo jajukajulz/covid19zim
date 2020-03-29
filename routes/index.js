@@ -90,10 +90,10 @@ router.get('/api/v1/fetch_all_stats', function (req, res) {
   db.collection('stats').get()
   .then((snapshot) => {
     snapshot.forEach((doc) => {
-      docs_dict[doc.id] = doc.data()
+      docs_dict[doc.id] = doc.data();
     });
     res.json(docs_dict);
-    return
+    return;
   })
   .catch((err) => {
     console.log('Error getting documents', err);
@@ -102,6 +102,7 @@ router.get('/api/v1/fetch_all_stats', function (req, res) {
 
 // Function to return single document from a specified collection
 const getData = async (collection, document) =>  {
+  console.log("[getData] - Not yet cached");
   const doc = await db.doc(`${collection}/${document}`).get();
   const data = doc.data();
   if (!data) {
@@ -115,8 +116,8 @@ const getData = async (collection, document) =>  {
 router.get('/api/v1/fetch_stats', cache(SECONDS_IN_A_DAY), async function (req, res) {
   // console.log("HTTP Get Request");
 
-  res.json(await getData('stats','stats'))
-    return
+  res.json(await getData('stats','stats'));
+    return;
 });
 
 module.exports = router;
