@@ -118,7 +118,7 @@ $(document).ready(function() {
             // STATS_LAST_UPDATED: "#stats_last_updated",
             res_stats_total_confirmed = res.total_confirmed;
             res_stats_total_deaths = res.total_deaths;
-            res_stats_total_recover = res.total_recovered; 
+            res_stats_total_recover = (res.total_recovered === -1 ? 'No Data' : res.total_recovered); 
             res_stats_last_updated = res.last_updated;
 
             //    console.log(res.total_confirmed);
@@ -128,7 +128,7 @@ $(document).ready(function() {
                 console.log(data.total_confirmed);
                 res_stats_total_confirmed = data.total_confirmed;
                 res_stats_total_deaths = data.total_deaths;
-                res_stats_total_recover = data.total_recovered; 
+                res_stats_total_recover = (data.total_recovered === -1 ? 'No Data' : data.total_recovered); 
                 res_stats_last_updated = data.last_updated;
                 //console.log(res);
             } else {
