@@ -14,7 +14,15 @@ $(document).ready(function() {
                   STATS_TOTAL_CONFIRMED: "#stats_total_confirmed",
                   STATS_TOTAL_DEATHS: "#stats_total_deaths",
                   STATS_TOTAL_RECOVER: "#stats_total_recover",
+
+                  STATS_LOCKDOWN_CURRENT_DAY: "#stats_lockdown_current_day",
+                  STATS_LOCKDOWN_TOTAL_DAYS: "#stats_lockdown_total_days",
+                  STATS_TOTAL_TESTED: "#stats_total_tested",
+                  STATS_TOTAL_NEGATIVE: "#stats_total_negative",
+                  STATS_LOCKDOWN_STATUS: "#stats_lockdown_status",
+
                   STATS_LAST_UPDATED: "#stats_last_updated",
+
 
                   LOADING : "#loadingRow",
                   NOTIFICATION_BAR_ROW: "#notificationBarRow",
@@ -110,7 +118,11 @@ $(document).ready(function() {
             
           },
         }).done(function(res) {
-            var res_stats_total_confirmed, res_stats_total_deaths, res_stats_total_recover, res_stats_last_updated
+            var res_stats_total_confirmed, res_stats_total_deaths, 
+            res_stats_total_recover, res_stats_last_updated,res_stats_lockdown_current_day,
+            res_stats_lockdown_total_days, res_stats_total_tested, res_stats_total_negative,
+            res_stats_lockdown_status;
+
             if (res.response_status_flag) {
             // STATS_TOTAL_CONFIRMED: "#stats_total_confirmed",
             // STATS_TOTAL_DEATHS: "#stats_total_deaths",
@@ -120,6 +132,11 @@ $(document).ready(function() {
             res_stats_total_deaths = res.total_deaths;
             res_stats_total_recover = (res.total_recovered === -1 ? 'No Data' : res.total_recovered); 
             res_stats_last_updated = res.last_updated;
+            res_stats_lockdown_current_day = res.lockdown_current_day;
+            res_stats_lockdown_total_days = res.lockdown_total_days;
+            res_stats_total_tested = res.total_tested;
+            res_stats_total_negative = res.total_negative;
+            res_stats_lockdown_status = res.lockdown_status;
 
             //    console.log(res.total_confirmed);
             } else if(JSON.parse(res).response_status_flag) {
@@ -130,17 +147,35 @@ $(document).ready(function() {
                 res_stats_total_deaths = data.total_deaths;
                 res_stats_total_recover = (data.total_recovered === -1 ? 'No Data' : data.total_recovered); 
                 res_stats_last_updated = data.last_updated;
+                res_stats_lockdown_current_day = data.lockdown_current_day;
+                res_stats_lockdown_total_days = data.lockdown_total_days;
+                res_stats_total_tested = data.total_tested;
+                res_stats_total_negative = data.total_negative;
+                res_stats_lockdown_status = data.lockdown_status;
                 //console.log(res);
             } else {
                 console.log('error...ajax');
                 res_stats_total_confirmed = CONSTANTS.DASH;
                 res_stats_total_deaths = CONSTANTS.DASH;
-                res_stats_total_recover = CONSTANTS.DASH; 
+                res_stats_total_recover = CONSTANTS.DASH;
+                
+                res_stats_lockdown_current_day = CONSTANTS.DASH;
+                res_stats_lockdown_total_days = CONSTANTS.DASH;
+                res_stats_total_tested = CONSTANTS.DASH;
+                res_stats_total_negative = CONSTANTS.DASH;
+                res_stats_lockdown_status = CONSTANTS.DASH;
+
                 res_stats_last_updated = CONSTANTS.DASH;
             }
             $(CONSTANTS.STATS_TOTAL_CONFIRMED).html(`<h1 class="card-text">${res_stats_total_confirmed}</h1>`);
             $(CONSTANTS.STATS_TOTAL_DEATHS).html(`<h1 class="card-text">${res_stats_total_deaths}</h1>`);
             $(CONSTANTS.STATS_TOTAL_RECOVER).html(`<h1 class="card-text">${res_stats_total_recover}</h1>`);
+
+            $(CONSTANTS.STATS_LOCKDOWN_CURRENT_DAY).html(`<h1 class="card-text">${res_stats_lockdown_current_day}/${res_stats_lockdown_total_days}</h1>`);
+            $(CONSTANTS.STATS_LOCKDOWN_STATUS).html(`<h1 class="card-text">${res_stats_lockdown_status}</h1>`);
+            $(CONSTANTS.STATS_TOTAL_TESTED).html(`<h1 class="card-text">${res_stats_total_tested}</h1>`);
+            $(CONSTANTS.STATS_TOTAL_NEGATIVE).html(`<h1 class="card-text">${res_stats_total_negative}</h1>`);
+
             $(CONSTANTS.STATS_LAST_UPDATED).html(`<i>Last updated ${res_stats_last_updated}.</i>`);
         });
     };
