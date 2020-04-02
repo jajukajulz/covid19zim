@@ -60,6 +60,7 @@ var indexRouter = require('./routes/index');
 // Expose static files
 app.use('/scripts/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/')));
 app.use('/scripts/jquery', express.static(path.join(__dirname, 'node_modules/jquery/dist/')));
+app.use('/scripts/fa', express.static(path.join(__dirname, 'node_modules/@fortawesome/fontawesome-free/')));
 app.use(express.static('public'));
 
 
