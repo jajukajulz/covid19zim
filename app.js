@@ -60,9 +60,7 @@ var indexRouter = require('./routes/index');
 // Expose static files
 app.use('/scripts/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/')));
 app.use('/scripts/jquery', express.static(path.join(__dirname, 'node_modules/jquery/dist/')));
-//app.use("/public", express.static('public')); 
-//app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static('public'))
+app.use(express.static('public'));
 
 
 // Enable SSL redirect
@@ -78,11 +76,17 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
+// To use 'req.body' -- to parse 'application/json' content-type 
+app.use(express.json());
+
+// Not use 'req.body' -- to parse 'application/x-www-form-urlencoded' content-type 
+app.use(express.urlencoded({ extended: false }));
+
+// Parse HTTP request cookies
+app.use(cookieParser());
+
+// Mount router
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
