@@ -22,6 +22,7 @@ $(document).ready(function() {
                   STATS_LOCKDOWN_STATUS: "#stats_lockdown_status",
 
                   STATS_LAST_UPDATED: "#stats_last_updated",
+                  STATS_DATA_DATE: "#stats_data_date",
 
 
                   LOADING : "#loadingRow",
@@ -118,7 +119,7 @@ $(document).ready(function() {
             var res_stats_total_confirmed, res_stats_total_deaths, 
             res_stats_total_recover, res_stats_last_updated,res_stats_lockdown_current_day,
             res_stats_lockdown_total_days, res_stats_total_tested, res_stats_total_negative,
-            res_stats_lockdown_status;
+            res_stats_lockdown_status, res_stats_data_date;
 
             if (res.response_status_flag) {
             res_stats_total_confirmed = res.total_confirmed;
@@ -130,9 +131,10 @@ $(document).ready(function() {
             res_stats_total_tested = res.total_tested;
             res_stats_total_negative = res.total_negative;
             res_stats_lockdown_status = res.lockdown_status;
-
+            res_stats_data_date = res.data_date;
             //    console.log(res.total_confirmed);
-            } else if(JSON.parse(res).response_status_flag) {
+            } 
+            else if(JSON.parse(res).response_status_flag) {
                 console.log("Cached stats :)");
                 var data = JSON.parse(res);
                 console.log(data.total_confirmed);
@@ -145,8 +147,10 @@ $(document).ready(function() {
                 res_stats_total_tested = data.total_tested;
                 res_stats_total_negative = data.total_negative;
                 res_stats_lockdown_status = data.lockdown_status;
+                res_stats_data_date = data.data_date;
                 //console.log(res);
-            } else {
+            } 
+            else {
                 console.log('error...ajax');
                 res_stats_total_confirmed = CONSTANTS.DASH;
                 res_stats_total_deaths = CONSTANTS.DASH;
@@ -159,6 +163,7 @@ $(document).ready(function() {
                 res_stats_lockdown_status = CONSTANTS.DASH;
 
                 res_stats_last_updated = CONSTANTS.DASH;
+                res_stats_data_date = CONSTANTS.DASH;
             }
             $(CONSTANTS.STATS_TOTAL_CONFIRMED).html(`<h1 class="card-text">${res_stats_total_confirmed}</h1>`);
             $(CONSTANTS.STATS_TOTAL_DEATHS).html(`<h1 class="card-text">${res_stats_total_deaths}</h1>`);
@@ -170,6 +175,7 @@ $(document).ready(function() {
             $(CONSTANTS.STATS_TOTAL_NEGATIVE).html(`<h1 class="card-text">${res_stats_total_negative}</h1>`);
 
             $(CONSTANTS.STATS_LAST_UPDATED).html(`<b><i>Last updated ${res_stats_last_updated}.</i></b>`);
+            $(CONSTANTS.STATS_DATA_DATE).html(`<b><i>Data date ${res_stats_data_date}.</i></b>`);
         });
     };
 
