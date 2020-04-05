@@ -3,9 +3,14 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+const expressSession = require('express-session');
 var logger = require('morgan');
 var ejs = require('ejs');
 var sslRedirect = require('heroku-ssl-redirect');
+const { ensureLoggedIn } = require('connect-ensure-login');
+const passport = require('passport');
+const { Strategy, email } = require('passport-zero');
+const db = require('./db');
 
 const admin = require('firebase-admin');
 
@@ -36,26 +41,46 @@ admin.initializeApp({
 });
 
 // Handle to Firebase DB
-let db = admin.firestore();
+let firebase_db = admin.firestore();
 
-// Load Express Framework
+passport.use(
+  new Strategy(
+    {
+      secret: 'zero cat', //  Mandatory string, used to sign tokens
+      deliver: email({
+        // Or create a .env file with the following variables
+        // For further information on smtp configuration check https://github.com/eleith/emailjs
+        user: process.env.smtpServerUser,
+        from: process.env.smtpServerFrom,
+        password: process.env.smtpServerPassword,
+        port: process.env.smtpServerPort,
+        host: process.env.smtpServerHost,
+        ssl: false
+      })
+    },
+    email => db.users.findByEmail(email)
+  )
+);
+
+// Configure Passport authenticated session persistence.
+//
+// In order to restore authentication state across HTTP requests, Passport needs
+// to serialize users into and deserialize users out of the session.  The
+// typical implementation of this is as simple as supplying the user ID when
+// serializing, and querying the user record by ID from the database when
+// deserializing.
+passport.serializeUser((user, cb) => {
+  cb(null, user.id);
+});
+
+passport.deserializeUser(async (id, cb) => {
+  const user = await db.users.findById(id);
+  cb(null, user);
+});
+
+// Load Express Framework i.e. Create a new Express application
 var app = express();
 
-// Parse HTTP request body
-app.use(bodyParser.json()); 
-
-// Example of adding a new document to Firebase
-// recall that a collection has 0 or more documents
-// let docRef = db.collection('stats').doc('consts1');
-
-// let setAda = docRef.set({
-//   first: 'Ada',
-//   last: 'Lovelace',
-//   born: 1815
-// });
-
-// Import Index router
-var indexRouter = require('./routes/index');
 
 // Expose static files
 app.use('/scripts/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/')));
@@ -63,32 +88,70 @@ app.use('/scripts/jquery', express.static(path.join(__dirname, 'node_modules/jqu
 app.use('/scripts/fa', express.static(path.join(__dirname, 'node_modules/@fortawesome/fontawesome-free/')));
 app.use(express.static('public'));
 
+// Use application-level middleware for common functionality, including logging, parsing, and session handling.
+
+// Parse HTTP request body
+app.use(bodyParser.json());
+
+app.use(logger('dev'));
+
+// To use 'req.body' -- to parse 'application/json' content-type
+app.use(express.json());
+
+// Use 'req.body' -- to parse 'application/x-www-form-urlencoded' content-type
+app.use(express.urlencoded({ extended: true }));
+
+// Parse HTTP request cookies
+app.use(cookieParser());
+
+app.use(
+  expressSession({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false
+  })
+);
+
+
+// Initialize Passport and restore authentication state, if any, from the session.
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Example of adding a new document to Firebase
+// recall that a collection has 0 or more documents
+// let docRef = firebase_db.collection('stats').doc('consts1');
+
+// let setAda = docRef.set({
+//   first: 'Ada',
+//   last: 'Lovelace',
+//   born: 1815
+// });
 
 // Enable SSL redirect
 app.use(sslRedirect([
-  'other',
-  'development',
+  // 'other',
+  // 'development',
   'production'
   ]));
-
 
 // View engine setup (ejs)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(logger('dev'));
 
-// To use 'req.body' -- to parse 'application/json' content-type 
-app.use(express.json());
+// Import routers
+var indexRouter = require('./routes/index');
+var authRouter = require('./routes/auth');
+var apiRouter = require('./routes/api');
+var cachesRouter = require('./routes/caches');
 
-// Not use 'req.body' -- to parse 'application/x-www-form-urlencoded' content-type 
-app.use(express.urlencoded({ extended: false }));
-
-// Parse HTTP request cookies
-app.use(cookieParser());
-
-// Mount router
+// Mount routers
 app.use('/', indexRouter);
+app.use('/', authRouter);
+app.use('/', apiRouter);
+app.use('/', cachesRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -105,5 +168,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;
