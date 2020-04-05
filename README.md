@@ -32,8 +32,32 @@ In order to run covid19zim Dashboard, an environment with the following is requi
 ```
 $npm install
 ```
+
+2. Create .env file and add the following variables (Firebase from Firebase Service Account, smtpServer from your
+ email servera, and ADMIN for the user logging in via magic link).
+```
+FIREBASE_TYPE=
+FIREBASE_PROJECT_ID=
+FIREBASE_PRIVATE_KEY_ID=
+FIREBASE_PRIVATE_KEY=
+FIREBASE_CLIENT_EMAIL=
+FIREBASE_CLIENT_ID=
+FIREBASE_AUTH_URI=
+FIREBASE_TOKEN_URI=
+FIREBASE_AUTH_PROVIDER_X509_CERT_URL=
+FIREBASE_CLIENT_X509_CERT_URL=
+smtpServerFrom=
+smtpServerUser=
+smtpServerPassword=
+smtpServerHost= #for gmail should be smtp.gmail.com
+smtpServerPort= #for gmail should be 465
+ADMIN_USERNAME=
+ADMIN_EMAIL=
+NODE_ENV="development"
+```
+
    
-2. Start the web server (Express) and navigate to http://localhost:3000/ in your browser.
+3. Start the web server (Express) and navigate to http://localhost:3000/ in your browser.
 ```
 $npm run dev
 ```
