@@ -36,7 +36,7 @@ $npm install
 - Add the following fields to the `stats` document - `const_lockdown_active`,`lockdown_status`,`lockdown_current_day`,`total_negative`,`total_recovered`,`total_tested`,`total_deaths`,`total_confirmed`,`last_updated`, `response_status_flag`,`data_date`,`lockdown_total_days`
    
 3. Create .env file and add the following variables (Firebase from Firebase Service Account, smtpServer from your
- email servera, and ADMIN for the user logging in via magic link).
+ email server, and ADMIN for the user logging in via magic link).
 ```
 FIREBASE_TYPE=
 FIREBASE_PROJECT_ID=
@@ -64,6 +64,10 @@ NODE_ENV="development"
 $npm run dev
 ```
 
+5. Update Cloud Firestore and flush cache for latest stats to show on dashboard.
+```
+localhost:3000/caches/delete
+```
 
 ## Production Deployment
 1. To deploy to a production server (e.g. heroku) - create project, configure env variables and push. 
@@ -87,6 +91,26 @@ curl -k https://covid19zim.site/api/v1/fetch_stats
 ```
 curl -k https://covid19zim.site/api/v1/fetch_all_stats
 {"stats":{"lockdown_total_days":21,"const_lockdown_active":false,"lockdown_status":"Started","lockdown_current_day":8,"total_negative":349,"total_recovered":-1,"total_tested":358,"total_deaths":1,"total_confirmed":9,"last_updated":"06 April 2020","response_status_flag":true,"data_date":"05 April 2020"}}
+```
+
+## Other Documentation
+
+### Cache
+The web app uses server side caching as the stats are updated once a day. The cache routes can only be access by a logged in user.
+```
+Check cache keys: /caches/view
+Check cache json: /caches/json
+Flush cache: /caches/delete
+Get cache size:  /caches/size
+Test cache: /caches/test/
+```
+
+### Authentication
+The web app uses magic link authentication. Only the user with ADMIN_EMAIL set in env variables can login. After entering the valid login email, an email with magic link is sent, which when clicked gives access.
+```
+Login: /login
+User Profile: /profile
+Logout: /logout
 ```
 
 
