@@ -13,11 +13,7 @@ router.get('/',
     utils.cache.cacheMiddleware(utils.cache.SECONDS_IN_A_DAY)],
     function(req, res, next) {
   req.user ? console.log("req.user is set") : console.log("req.user is not set");
-  var title = 'Covid19Zim Aggregator | Near-real time statistics and information about the COVID-19 in Zimbabwe.';
-  var title_sub = 'Near-real time statistics and information about the COVID-19 in Zimbabwe.';
-  var title_hastags = '#Covid19Zim #FlattenTheCurve #StayHomeSaveLives';
-  var title_main = 'Coronavirus COVID-19 Cases in Zimbabwe.';
-  res.render('index', { title: title, title_main: title_main, title_sub: title_sub, title_hastags: title_hastags  });
+  res.render('index', { title: utils.consts.SITE_TITLE, title_main: utils.consts.SITE_TITLE_MAIN, title_sub: utils.consts.SITE_TITLE_SUB, title_hastags: utils.consts.SITE_TITLE_HASHTAGS  });
 });
 
 module.exports = router;
