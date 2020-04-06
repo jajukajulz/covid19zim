@@ -122,5 +122,6 @@ Logout: /logout
 
 
 ## Get in Touch
-[Feedback form](https://docs.google.com/forms/d/1mr3Kns_mwMX5brVBYgfxJKb8kO1zhaYU1p-VSV_Q5pI/){:target="_blank"}
-[Blog Post about COVID19ZIM Aggregator](http://juliankanjere.com/2020/03/covid19zim-aggregator/){:target="_blank"}
+[Feedback form](https://docs.google.com/forms/d/1mr3Kns_mwMX5brVBYgfxJKb8kO1zhaYU1p-VSV_Q5pI/)
+
+[Blog Post about COVID19ZIM Aggregator](http://juliankanjere.com/2020/03/covid19zim-aggregator/)
