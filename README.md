@@ -7,19 +7,14 @@ Online version available at https://covid19zim.herokuapp.com/
 
 ![Alt text](./public/images/covid19zim.png?raw=true "covid19zim Aggregator")
 
-## User Stories
+## Use Cases
 covid19zim Aggreagtor has 3 main use cases:
 
 - Confirm official cases, deaths and recoveries.
-
 - Display contact details for the MoHCC in Zimbabwe
-
 - Display Health Tips
-
-## Documentation
-- n/a
-
-
+- List COVID-19 resources for Zimbabwe
+- Display contact details for Hospitals in Zimbabwe
 
 ## Installation (Development Environment)
 In order to run covid19zim Dashboard, an environment with the following is required:
@@ -33,7 +28,12 @@ In order to run covid19zim Dashboard, an environment with the following is requi
 $npm install
 ```
 
-2. Create .env file and add the following variables (Firebase from Firebase Service Account, smtpServer from your
+2. Create a Firebase Cloud Firestore DB.
+- Create a collection called `stats`
+- Create a document called `stats`
+- Add the following fields to the `stats` document - `const_lockdown_active`,`lockdown_status`,`lockdown_current_day`,`total_negative`,`total_recovered`,`total_tested`,`total_deaths`,`total_confirmed`,`last_updated`, `response_status_flag`,`data_date`,`lockdown_total_days`
+   
+3. Create .env file and add the following variables (Firebase from Firebase Service Account, smtpServer from your
  email servera, and ADMIN for the user logging in via magic link).
 ```
 FIREBASE_TYPE=
@@ -53,21 +53,40 @@ smtpServerHost= #for gmail should be smtp.gmail.com
 smtpServerPort= #for gmail should be 465
 ADMIN_USERNAME=
 ADMIN_EMAIL=
+PASSPORT_ZERO_SECRET
 NODE_ENV="development"
 ```
 
-   
-3. Start the web server (Express) and navigate to http://localhost:3000/ in your browser.
+4. Start the web server (Express) and navigate to http://localhost:3000/ in your browser.
 ```
 $npm run dev
 ```
 
 
 ## Production Deployment
-1. To deploy to a production server there is no need to first bundle and uglify then deploy
+1. To deploy to a production server (e.g. heroku) - create project, configure env variables and push. 
+
+If on a different server, after deploy, run the start command.
 ```
 $npm run start
 ```
+
+
+## API v1 Documentation
+
+### Get COVID19 Stats for Zim (i.e. for stats document)
+```
+curl -k https://covid19zim.site/api/v1/fetch_stats
+{"const_lockdown_active":false,"lockdown_status":"Started","lockdown_current_day":8,"total_negative":349,"total_recovered":-1,"total_tested":358,"total_deaths":1,"total_confirmed":9,"last_updated":"06 April 2020","response_status_flag":true,"data_date":"05 April 2020","lockdown_total_days":21}
+```
+
+
+### Get COVID19 Stats for configured countries (i.e. for all documents)
+```
+curl -k https://covid19zim.site/api/v1/fetch_all_stats
+{"stats":{"lockdown_total_days":21,"const_lockdown_active":false,"lockdown_status":"Started","lockdown_current_day":8,"total_negative":349,"total_recovered":-1,"total_tested":358,"total_deaths":1,"total_confirmed":9,"last_updated":"06 April 2020","response_status_flag":true,"data_date":"05 April 2020"}}
+```
+
 
 ## Supported Browsers
 
