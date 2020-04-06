@@ -11,7 +11,7 @@ const { ensureLoggedIn } = require('connect-ensure-login');
 const passport = require('passport');
 const { Strategy, email } = require('passport-zero');
 const db = require('./db');
-
+const utils = require('./utils');
 const admin = require('firebase-admin');
 
 // Load environment variables from a .env file into process.env
@@ -111,7 +111,6 @@ app.use(
   })
 );
 
-
 // Initialize Passport and restore authentication state, if any, from the session.
 app.use(passport.initialize());
 app.use(passport.session());
@@ -165,7 +164,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('error', { title: utils.consts.SITE_TITLE, title_main: utils.consts.SITE_TITLE_MAIN, title_sub: utils.consts.SITE_TITLE_SUB, title_hastags: utils.consts.SITE_TITLE_HASHTAGS  });
 });
 
 
