@@ -55,7 +55,7 @@ smtpServerHost= #for gmail should be smtp.gmail.com
 smtpServerPort= #for gmail should be 465
 ADMIN_USERNAME=
 ADMIN_EMAIL=
-PASSPORT_ZERO_SECRET
+PASSPORT_ZERO_SECRET=
 NODE_ENV="development"
 ```
 
@@ -95,3 +95,8 @@ curl -k https://covid19zim.site/api/v1/fetch_all_stats
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>iOS Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/samsung-internet/samsung-internet_48x48.png" alt="Samsung" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Samsung | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Opera |
 | --------- | --------- | --------- | --------- | --------- | --------- | --------- |
 | IE11, Edge| Supported| Supported| Supported| Supported| Supported| Supported
+
+
+## Get in Touch
+[Feedback form](https://docs.google.com/forms/d/1mr3Kns_mwMX5brVBYgfxJKb8kO1zhaYU1p-VSV_Q5pI/){:target="_blank"}
+[Blog Post about COVID19ZIM Aggregator](http://juliankanjere.com/2020/03/covid19zim-aggregator/){:target="_blank"}
