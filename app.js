@@ -46,9 +46,8 @@ let firebase_db = admin.firestore();
 passport.use(
   new Strategy(
     {
-      secret: 'zero cat', //  Mandatory string, used to sign tokens
+      secret: process.env.PASSPORT_ZERO_SECRET, //  Mandatory string, used to sign tokens
       deliver: email({
-        // Or create a .env file with the following variables
         // For further information on smtp configuration check https://github.com/eleith/emailjs
         user: process.env.smtpServerUser,
         from: process.env.smtpServerFrom,
