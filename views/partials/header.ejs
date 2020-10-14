@@ -12,6 +12,19 @@
         <h4 class="text-white">Contact</h4>
         <ul class="list-unstyled">
           <li><a href="https://docs.google.com/forms/d/1mr3Kns_mwMX5brVBYgfxJKb8kO1zhaYU1p-VSV_Q5pI/" target="_blank" class="text-white">Get in Touch</a></li>
+          <% if (user) { %>
+          <li><a href="/profile" class="text-white">User - Profile</a></li>
+          <li><a href="/logout" class="text-white">User - Logout</a></li>
+          <li><a href="/caches/delete" class="text-white">Cache - Flush</a></li>
+          <li><a href="/caches/view" class="text-white">Cache - View</a></li>
+          <li><a href="/caches/json" class="text-white">Cache - View JSON</a></li>
+          <li><a href="/caches/size" class="text-white">Cache - View Size</a></li>
+          <li><a href="/caches/test" class="text-white">Cache - Test</a></li>
+          <li><a href="/api/v1/fetch_all_stats" class="text-white">API - Fetch All Stats</a></li>
+          <li><a href="/api/v1/fetch_stats" class="text-white">API - Fetch Single Doc</a></li>
+          <% } else { %>
+            <a href="/login">Login</a>
+          <% } %>
         </ul>
       </div>
     </div>
