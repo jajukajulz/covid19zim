@@ -5,9 +5,9 @@ const SECONDS_10 = 10; //10 seconds
 const MILLISECONDS_1000 = 1000; // 1 second
 const TOKEN_URL = "/?token";
 
-const SITE_TITLE = 'Covid19Zim Aggregator | Near-real time statistics and information about the COVID-19 in Zimbabwe.';
+const SITE_TITLE = 'Covid19Zim Information Hub | Near-real time statistics and information about the COVID-19 in Zimbabwe.';
 const SITE_TITLE_SUB = 'Near-real time statistics and information about the COVID-19 in Zimbabwe.';
-const SITE_TITLE_HASHTAGS = '#Covid19Zim #FlattenTheCurve #StayHomeSaveLives';
+const SITE_TITLE_HASHTAGS = '#Covid19Zim #FlattenTheCurve #StayHomeSaveLives #WearAMask';
 const SITE_TITLE_MAIN = 'Coronavirus COVID-19 Cases in Zimbabwe.';
 
 // Memory cache middleware
