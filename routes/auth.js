@@ -10,8 +10,8 @@ router.get(
   '/login/:message?',
   (req, res) =>
     req.params.message ? 
-    res.render('message', { title: utils.consts.SITE_TITLE, title_main: utils.consts.SITE_TITLE_MAIN, title_sub: utils.consts.SITE_TITLE_SUB, title_hastags: utils.consts.SITE_TITLE_HASHTAGS  }) : 
-    res.render('login', { title: utils.consts.SITE_TITLE, title_main: utils.consts.SITE_TITLE_MAIN, title_sub: utils.consts.SITE_TITLE_SUB, title_hastags: utils.consts.SITE_TITLE_HASHTAGS  })
+    res.render('message', { title: utils.consts.SITE_TITLE, title_main: utils.consts.SITE_TITLE_MAIN, title_sub: utils.consts.SITE_TITLE_SUB, title_hastags: utils.consts.SITE_TITLE_HASHTAGS,  user: req.user,   }) : 
+    res.render('login', { title: utils.consts.SITE_TITLE, title_main: utils.consts.SITE_TITLE_MAIN, title_sub: utils.consts.SITE_TITLE_SUB, title_hastags: utils.consts.SITE_TITLE_HASHTAGS,  user: req.user,   })
 );
 
 // request token - Process Login form submission
