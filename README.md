@@ -1,5 +1,5 @@
 # COVID-19 in Zimbabwe
-covid19zim Aggregator is a web application for accessing near-real time statistics and information about the COVID-19 in Zimbabwe.
+covid19zim Information Hub is a web application for accessing near-real time statistics and information about the COVID-19 in Zimbabwe.
 Official statistics are gathered from the Ministry of Health and Child Care (MoHCC) in Zimbabwe. Other data sources such as WHO are also 
 considered. This application is independently developed and not affiliated with any government organisation.
 
@@ -8,7 +8,7 @@ Online version available at https://covid19zim.site
 ![Alt text](./public/images/covid19zim.png?raw=true "covid19zim Aggregator")
 
 ## Use Cases
-covid19zim Aggreagtor has 3 main use cases:
+covid19zim Information Hub use cases:
 
 - Confirm official cases, deaths and recoveries.
 - Display contact details for the MoHCC in Zimbabwe
